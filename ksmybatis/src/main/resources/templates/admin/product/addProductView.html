@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{admin/layout/layout_main}">
+	
+	<head>
+		<meta name="description" content="한국스마트정보교육원 ksmybatis" />
+	</head>
+	
+	<!-- 추가할 js file -->
+	<th:block layout:fragment="jsFile">
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	</th:block>
+	
+	<!-- 추가할 script -->
+	<th:block layout:fragment="jsScript">
+		<script>
+
+		</script>
+	</th:block>
+	
+	<!-- 추가할 페이지 contents -->
+	<th:block layout:fragment="contents">
+		<div class="content-header">
+            <div>
+                <h2 class="content-title card-title">상품등록</h2>
+            </div>
+        </div>
+        <div class="card mb-4 row col-lg-10">
+        	<form id="addProductForm" th:action="@{/admin/product/addProduct}" method="post">
+	            <header class="card-header" >
+	                <div class="row gx-3 justify-content-end">
+	                    <div class="col-lg-2 ms-auto d-flex justify-content-between">
+	                        <button type="submit" id="addProductBtn" class="btn btn-success text-white">상품등록</button>
+	                        <button type="reset" id="resetBtn" class="btn btn-warning text-white">등록취소</button>
+	                    </div>
+	                </div>
+	            </header>
+	            <!-- card-header end// -->
+	            <div class="card-body">
+	                <div class="row">
+	                    <div class="col-md-2">
+	                        <h6 class="fs-5">1. 필수입력항목</h6>
+	                    </div>
+	                    <div class="col-md-10">
+	                    	<div class="row">	                    	
+		                        <div class="mb-4 col-md-6">
+		                        	<div class="row align-items-end">
+		                        		<div class="col-md-8">		                        		
+											<label class="form-label fs-6 fw-bold">판매자코드</label>
+											<input type="text" placeholder="판매자코드를 입력하세요" class="form-control"
+													id="vendCd" name="vendCd">
+		                        		</div>		                        	
+		                        	</div>
+		                        </div>
+	                    	</div>
+	                    	
+	                    	<div class="row">	                    	
+		                        <div class="mb-4 col-lg-3">
+		                            <label class="form-label fs-6 fw-bold">상품명</label>
+		                            <select class="form-select text-center" id="productName" name="productName">
+		                                <option value=""> === 상품을 선택하세요 === </option>
+											<th:block th:unless="${#lists.isEmpty(gradeList)}"
+													  th:each="p : ${gradeList}">
+			                                <option th:value="${p.prodName}" th:text="${p.prodName}"></option>		                                
+		                                </th:block>
+		                            </select>
+		                        </div>
+		                        <div class="mb-4 col-lg-6">
+		                            <label class="form-label fs-6 fw-bold">가격</label>
+		                            <input type="text" placeholder="가격을 입력하세요" class="form-control"
+		                            		id="prodUntPrc" name="prodUntPrc">
+		                        </div>
+	                    	</div>
+	                    </div> <!-- col.// -->
+	                </div>
+	            </div>
+        	</form>
+            <!-- card-body end// -->
+        </div>
+	</th:block>
+	
+	
+</html>
+
+
+
+
+
+
+
+
+
+
